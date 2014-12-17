@@ -34,6 +34,7 @@
 @color_bg: #fcfaf2;
 @color_bgc: #ddd;
 @color_text: #36454f;
+@color_flavour: #fe8181;
 
 html {
   background-color: @color_bg;
@@ -103,13 +104,19 @@ nav {
         text-transform: uppercase;
         color: @color_text;
 
+        //border-bottom: 3px solid;
+        //border-color: @color_flavour;
+
+        &.active {
+          font-weight: bold;
+          color: @color_flavour;
+          //border-bottom: 3px solid;
+          //border-color: @color_flavour;
+        }
+
         &:hover {
           cursor: pointer;
         }
-      }
-
-      .active {
-        background-color: @color_bg;
       }
     }
   }

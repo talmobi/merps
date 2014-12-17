@@ -61,11 +61,12 @@ nav ol li a {
   text-transform: uppercase;
   color: #36454f;
 }
+nav ul li a.active,
+nav ol li a.active {
+  font-weight: bold;
+  color: #fe8181;
+}
 nav ul li a:hover,
 nav ol li a:hover {
   cursor: pointer;
-}
-nav ul li .active,
-nav ol li .active {
-  background-color: #fcfaf2;
 }

@@ -27,10 +27,12 @@ var Router = React.createClass({displayName: 'Router',
       var Component = route[1];
 
       page(url, function (ctx) {
+        console.log(ctx.state);
+
         self.setState({
           component: (
             React.createElement("div", null, 
-              React.createElement(Nav, null), 
+              React.createElement(Nav, {pathname: ctx.state.pathname}), 
               React.createElement(Component, {params: ctx.params, querystring: ctx.querystring})
             )
           )
@@ -48,19 +50,66 @@ var Router = React.createClass({displayName: 'Router',
 });
 
 var Nav = React.createClass({displayName: 'Nav',
+
+  getInitialState: function () {
+    return {
+      active: 0,
+      navItems: [{
+        url: '/',
+        text: 'Home'
+      },{
+        url: '/users/me',
+        text: 'Me'
+      },{
+        url: '/users',
+        text: 'Users'
+      },{
+        url: '/query?foo=bar&babar=fafar',
+        text: 'Query'
+      },{
+        url: '/code',
+        text: 'Code'
+      },{
+        url: '/' + Date.now(),
+        text: '404'
+      }]
+    }
+  },
+
+  activate: function (index) {
+    this.state.active = index;
+    console.log("new index: " + index);
+  },
+
   render: function () {
+    var self = this;
+    var components = this.state.navItems.map(function (item, index) {
+      return React.createElement(NavItem, {activate: self.activate, index: index, 
+        active: self.state.active === index, url: item.url, text: item.text})
+    });
+
     return (
       React.createElement("nav", {className: "navbar"}, 
         React.createElement("div", {className: "container"}, 
           React.createElement("ul", {className: "navbar-list"}, 
-            React.createElement("li", null, React.createElement("a", {onClick: navigate('/')}, "Home")), 
-            React.createElement("li", null, React.createElement("a", {onClick: navigate('/users/me')}, "Me")), 
-            React.createElement("li", null, React.createElement("a", {onClick: navigate('/users')}, "Users")), 
-            React.createElement("li", null, React.createElement("a", {onClick: navigate('/query?foo=bar&babar=farfar')}, "Query")), 
-            React.createElement("li", null, React.createElement("a", {onClick: navigate('/code')}, "Code")), 
-            React.createElement("li", null, React.createElement("a", {onClick: navigate('/error')}, "Error"))
+            components
           )
         )
+      )
+    );
+  }
+});
+
+var NavItem = React.createClass({displayName: 'NavItem',
+  handleClick: function () {
+    this.props.activate(this.props.index);
+    navigate(this.props.url)();
+    console.log(this.props);
+  },
+  render: function () {
+    return (
+      React.createElement("li", null, 
+        React.createElement("a", {className: this.props.active ? 'active' : '', onClick: this.handleClick}, this.props.text)
       )
     );
   }

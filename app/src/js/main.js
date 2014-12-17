@@ -26,10 +26,12 @@ var Router = React.createClass({
       var Component = route[1];
 
       page(url, function (ctx) {
+        console.log(ctx.state);
+
         self.setState({
           component: (
             <div>
-              <Nav />
+              <Nav pathname={ctx.state.pathname}/>
               <Component params={ctx.params} querystring={ctx.querystring} />
             </div>
           )
@@ -47,20 +49,67 @@ var Router = React.createClass({
 });
 
 var Nav = React.createClass({
+
+  getInitialState: function () {
+    return {
+      active: 0,
+      navItems: [{
+        url: '/',
+        text: 'Home'
+      },{
+        url: '/users/me',
+        text: 'Me'
+      },{
+        url: '/users',
+        text: 'Users'
+      },{
+        url: '/query?foo=bar&babar=fafar',
+        text: 'Query'
+      },{
+        url: '/code',
+        text: 'Code'
+      },{
+        url: '/' + Date.now(),
+        text: '404'
+      }]
+    }
+  },
+
+  activate: function (index) {
+    this.state.active = index;
+    console.log("new index: " + index);
+  },
+
   render: function () {
+    var self = this;
+    var components = this.state.navItems.map(function (item, index) {
+      return <NavItem activate={self.activate} index={index}
+        active={self.state.active === index} url={item.url} text={item.text} />
+    });
+
     return (
       <nav className="navbar">
         <div className="container">
           <ul className="navbar-list">
-            <li><a onClick={navigate('/')}>Home</a></li>
-            <li><a onClick={navigate('/users/me')}>Me</a></li>
-            <li><a onClick={navigate('/users')}>Users</a></li>
-            <li><a onClick={navigate('/query?foo=bar&babar=farfar')}>Query</a></li>
-            <li><a onClick={navigate('/code')}>Code</a></li>
-            <li><a onClick={navigate('/error')}>Error</a></li>
+            {components}
           </ul>
         </div>
       </nav>
+    );
+  }
+});
+
+var NavItem = React.createClass({
+  handleClick: function () {
+    this.props.activate(this.props.index);
+    navigate(this.props.url)();
+    console.log(this.props);
+  },
+  render: function () {
+    return (
+      <li>
+        <a className={this.props.active ? 'active' : ''} onClick={this.handleClick}>{this.props.text}</a>
+      </li>
     );
   }
 });
