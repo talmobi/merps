@@ -27,7 +27,12 @@ var Router = React.createClass({
 
       page(url, function (ctx) {
         self.setState({
-          component: <Component params={ctx.params} querystring={ctx.querystring} />
+          component: (
+            <div>
+              <Nav />
+              <Component params={ctx.params} querystring={ctx.querystring} />
+            </div>
+          )
         });
       });
     });
@@ -41,10 +46,25 @@ var Router = React.createClass({
 
 });
 
+var Nav = React.createClass({
+  render: function () {
+    return (
+      <nav>
+        <ul>
+          <li><a onClick={navigate('/')}>Home</a></li>
+          <li><a onClick={navigate('/users/me')}>Me</a></li>
+          <li><a onClick={navigate('/users')}>Users</a></li>
+          <li><a onClick={navigate('/error')}>Error</a></li>
+        </ul>
+      </nav>
+    );
+  }
+});
+
 var Home = React.createClass({
   render: function () {
     return (
-      <div>Home Page</div>
+      <div>Home PagePage</div>
     );
   }
 });

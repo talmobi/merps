@@ -28,7 +28,12 @@ var Router = React.createClass({displayName: 'Router',
 
       page(url, function (ctx) {
         self.setState({
-          component: React.createElement(Component, {params: ctx.params, querystring: ctx.querystring})
+          component: (
+            React.createElement("div", null, 
+              React.createElement(Nav, null), 
+              React.createElement(Component, {params: ctx.params, querystring: ctx.querystring})
+            )
+          )
         });
       });
     });
@@ -42,10 +47,25 @@ var Router = React.createClass({displayName: 'Router',
 
 });
 
+var Nav = React.createClass({displayName: 'Nav',
+  render: function () {
+    return (
+      React.createElement("nav", null, 
+        React.createElement("ul", null, 
+          React.createElement("li", null, React.createElement("a", {onClick: navigate('/')}, "Home")), 
+          React.createElement("li", null, React.createElement("a", {onClick: navigate('/users/me')}, "Me")), 
+          React.createElement("li", null, React.createElement("a", {onClick: navigate('/users')}, "Users")), 
+          React.createElement("li", null, React.createElement("a", {onClick: navigate('/error')}, "Error"))
+        )
+      )
+    );
+  }
+});
+
 var Home = React.createClass({displayName: 'Home',
   render: function () {
     return (
-      React.createElement("div", null, "Home Page")
+      React.createElement("div", null, "Home PagePage")
     );
   }
 });
