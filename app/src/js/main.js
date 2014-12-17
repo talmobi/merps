@@ -49,15 +49,17 @@ var Router = React.createClass({
 var Nav = React.createClass({
   render: function () {
     return (
-      <nav>
-        <ul>
-          <li><a onClick={navigate('/')}>Home</a></li>
-          <li><a onClick={navigate('/users/me')}>Me</a></li>
-          <li><a onClick={navigate('/users')}>Users</a></li>
-          <li><a onClick={navigate('/query?foo=bar&babar=farfar')}>Query</a></li>
-          <li><a onClick={navigate('/code')}>Code</a></li>
-          <li><a onClick={navigate('/error')}>Error</a></li>
-        </ul>
+      <nav className="navbar">
+        <div className="container">
+          <ul className="navbar-list">
+            <li><a onClick={navigate('/')}>Home</a></li>
+            <li><a onClick={navigate('/users/me')}>Me</a></li>
+            <li><a onClick={navigate('/users')}>Users</a></li>
+            <li><a onClick={navigate('/query?foo=bar&babar=farfar')}>Query</a></li>
+            <li><a onClick={navigate('/code')}>Code</a></li>
+            <li><a onClick={navigate('/error')}>Error</a></li>
+          </ul>
+        </div>
       </nav>
     );
   }
@@ -66,7 +68,7 @@ var Nav = React.createClass({
 var Home = React.createClass({
   render: function () {
     return (
-      <div>Home Page</div>
+      <div className="page">Home Page</div>
     );
   }
 });
@@ -74,7 +76,7 @@ var Home = React.createClass({
 var Query = React.createClass({
   render: function () {
     return (
-      <div>Query Page, query: {this.props.querystring}</div>
+      <div className="page">Query Page, query: {this.props.querystring}</div>
     );
   }
 });
@@ -82,7 +84,7 @@ var Query = React.createClass({
 var Users = React.createClass({
   render: function () {
     return (
-      <div>Users page. Params: {this.props.params.id}</div>
+      <div className="page">Users page. Params: {this.props.params.id}</div>
     );
   }
 });
@@ -90,7 +92,7 @@ var Users = React.createClass({
 var Code = React.createClass({
   render: function () {
     return (
-      <div>Code page.
+      <div className="page">Code page.
         <pre>
           <code>
             Code block Code block Code block Code block
@@ -104,7 +106,7 @@ var Code = React.createClass({
 var PageNotFound = React.createClass({
   render: function () {
     return (
-      <div>404: Page not found!</div>
+      <div className="page">404: Page not found!</div>
     );
   }
 });

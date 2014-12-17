@@ -61,7 +61,7 @@ gulp.task('nodemon', function () {
 
 // less
 gulp.task('less', function() {
-  gulp.src('./app/src/css/*.less')
+  gulp.src('./app/src/less/*.less')
     .pipe(plumber())
     .pipe(less())
     .pipe(concat('less.css'))
@@ -95,7 +95,7 @@ gulp.task('watch', function() {
   livereload.listen();
   gulp.watch('app/dist/js/*.js', ['js']);
   gulp.watch('app/index.html', ['html']);
-  gulp.watch('app/src/css/*.less', ['less']);
+  gulp.watch('app/src/less/*.less', ['less']);
   gulp.watch('app/src/css/*.css', ['css']);
   gulp.watch('app/src/js/**/*.js', ['browserify']);
 });

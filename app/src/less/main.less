@@ -31,36 +31,88 @@
   background-size: @string;
 }
 
-@color_link: navy;
-@color_hover: #a3d8d6;
-@font_color: #eee;
-@color_bg: #ABB;
+@color_bg: #fcfaf2;
+@color_bgc: #ddd;
+@color_text: #36454f;
 
 html {
   background-color: @color_bg;
-  color: @font_color;
+  color: @color_text;
 }
 
-a {
-  color: @color_link;
+body {
+  font-size: 1.5em;
+  line-height: 1.6;
+}
+
+.container {
+  background-color: @color_bg;
+  color: @color_text;
+}
+
+.page {
+  display: block;
+  width: 100%;
+  border-top: 1px solid @color_bgc;
+  padding: 60px 0px 60px 0px;
+}
+
+nav + .page {
+  border-top-width: 0;
+}
+
+.container {
+  max-width: 800px;
 }
 
 nav {
-  color: @color_link;
-  
-  li {
-    background-color: #eee;
+  .container {
+    width: 100%;
+  }
+
+  display: block;
+  width: 100%;
+  background: @color_bg;
+  z-index: 99;
+  border-top: 1px solid @color_bgc;
+  border-bottom: 1px solid @color_bgc;
+
+  ul, ol {
     list-style: none;
-    display: inline-block;
+    margin-bottom: 0px;
 
-    padding: 10px;
-    font-size: 20px;
+    padding-left: 0;
+    margin-top: 0;
 
-    a {
-      &:hover {
-        color: @color_hover;
+    display: block;
+
+    li {
+      position: relative;
+      float: left;
+      margin-bottom: 0px;
+
+      background-color: transparent;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .2rem;
+      margin-right: 35px;
+      text-decoration: none;
+      line-height: 6.5rem;
+
+      a {
+        text-transform: uppercase;
+        color: @color_text;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .active {
+        background-color: @color_bg;
       }
     }
   }
+
 }
 

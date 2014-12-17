@@ -1,24 +1,73 @@
 /** Less mixins
 ---------------------*/
 html {
-  background-color: #aabbbb;
-  color: #eeeeee;
+  background-color: #fcfaf2;
+  color: #36454f;
 }
-a {
-  color: navy;
+body {
+  font-size: 1.5em;
+  line-height: 1.6;
+}
+.container {
+  background-color: #fcfaf2;
+  color: #36454f;
+}
+.page {
+  display: block;
+  width: 100%;
+  border-top: 1px solid #dddddd;
+  padding: 60px 0px 60px 0px;
+}
+nav + .page {
+  border-top-width: 0;
+}
+.container {
+  max-width: 800px;
 }
 nav {
-  color: navy;
+  display: block;
+  width: 100%;
+  background: #fcfaf2;
+  z-index: 99;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
 }
-nav li {
-  background-color: #eee;
+nav .container {
+  width: 100%;
+}
+nav ul,
+nav ol {
   list-style: none;
-  display: inline-block;
-  padding: 10px;
-  font-size: 20px;
+  margin-bottom: 0px;
+  padding-left: 0;
+  margin-top: 0;
+  display: block;
 }
-nav li a:hover {
-  color: #a3d8d6;
+nav ul li,
+nav ol li {
+  position: relative;
+  float: left;
+  margin-bottom: 0px;
+  background-color: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .2rem;
+  margin-right: 35px;
+  text-decoration: none;
+  line-height: 6.5rem;
+}
+nav ul li a,
+nav ol li a {
+  text-transform: uppercase;
+  color: #36454f;
+}
+nav ul li a:hover,
+nav ol li a:hover {
+  cursor: pointer;
+}
+nav ul li .active,
+nav ol li .active {
+  background-color: #fcfaf2;
 }
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
