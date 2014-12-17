@@ -54,6 +54,8 @@ var Nav = React.createClass({
           <li><a onClick={navigate('/')}>Home</a></li>
           <li><a onClick={navigate('/users/me')}>Me</a></li>
           <li><a onClick={navigate('/users')}>Users</a></li>
+          <li><a onClick={navigate('/query?foo=bar&babar=farfar')}>Query</a></li>
+          <li><a onClick={navigate('/code')}>Code</a></li>
           <li><a onClick={navigate('/error')}>Error</a></li>
         </ul>
       </nav>
@@ -64,7 +66,15 @@ var Nav = React.createClass({
 var Home = React.createClass({
   render: function () {
     return (
-      <div>Home PagePage</div>
+      <div>Home Page</div>
+    );
+  }
+});
+
+var Query = React.createClass({
+  render: function () {
+    return (
+      <div>Query Page, query: {this.props.querystring}</div>
     );
   }
 });
@@ -73,6 +83,20 @@ var Users = React.createClass({
   render: function () {
     return (
       <div>Users page. Params: {this.props.params.id}</div>
+    );
+  }
+});
+
+var Code = React.createClass({
+  render: function () {
+    return (
+      <div>Code page.
+        <pre>
+          <code>
+            Code block Code block Code block Code block
+          </code>
+        </pre>
+      </div>
     );
   }
 });
@@ -91,6 +115,8 @@ var routes = [
   ['/', Home],
   ['/users', Users],
   ['/users/:id', Users],
+  ['/query', Query],
+  ['/code', Code],
   ['*', PageNotFound],
 ];
 

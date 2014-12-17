@@ -13,7 +13,7 @@ app.get('/main.js', function (req, res) {
   return res.sendFile(__dirname + '/app/dist/js/main.js');
 });
 app.get('/main.css', function (req, res) {
-  return res.sendFile(__dirname + '/main.css');
+  return res.sendFile(__dirname + '/app/dist/css/main.css');
 });
 
 app.get('/*', function (req, res) {

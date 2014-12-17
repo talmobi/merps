@@ -55,6 +55,8 @@ var Nav = React.createClass({displayName: 'Nav',
           React.createElement("li", null, React.createElement("a", {onClick: navigate('/')}, "Home")), 
           React.createElement("li", null, React.createElement("a", {onClick: navigate('/users/me')}, "Me")), 
           React.createElement("li", null, React.createElement("a", {onClick: navigate('/users')}, "Users")), 
+          React.createElement("li", null, React.createElement("a", {onClick: navigate('/query?foo=bar&babar=farfar')}, "Query")), 
+          React.createElement("li", null, React.createElement("a", {onClick: navigate('/code')}, "Code")), 
           React.createElement("li", null, React.createElement("a", {onClick: navigate('/error')}, "Error"))
         )
       )
@@ -65,7 +67,15 @@ var Nav = React.createClass({displayName: 'Nav',
 var Home = React.createClass({displayName: 'Home',
   render: function () {
     return (
-      React.createElement("div", null, "Home PagePage")
+      React.createElement("div", null, "Home Page")
+    );
+  }
+});
+
+var Query = React.createClass({displayName: 'Query',
+  render: function () {
+    return (
+      React.createElement("div", null, "Query Page, query: ", this.props.querystring)
     );
   }
 });
@@ -74,6 +84,20 @@ var Users = React.createClass({displayName: 'Users',
   render: function () {
     return (
       React.createElement("div", null, "Users page. Params: ", this.props.params.id)
+    );
+  }
+});
+
+var Code = React.createClass({displayName: 'Code',
+  render: function () {
+    return (
+      React.createElement("div", null, "Code page.", 
+        React.createElement("pre", null, 
+          React.createElement("code", null, 
+            "Code block Code block Code block Code block"
+          )
+        )
+      )
     );
   }
 });
@@ -92,6 +116,8 @@ var routes = [
   ['/', Home],
   ['/users', Users],
   ['/users/:id', Users],
+  ['/query', Query],
+  ['/code', Code],
   ['*', PageNotFound],
 ];
 

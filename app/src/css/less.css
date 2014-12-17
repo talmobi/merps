@@ -1,0 +1,22 @@
+/** Less mixins
+---------------------*/
+html {
+  background-color: #aabbbb;
+  color: #eeeeee;
+}
+a {
+  color: navy;
+}
+nav {
+  color: navy;
+}
+nav li {
+  background-color: #eee;
+  list-style: none;
+  display: inline-block;
+  padding: 10px;
+  font-size: 20px;
+}
+nav li a:hover {
+  color: #a3d8d6;
+}
