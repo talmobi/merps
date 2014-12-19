@@ -25,6 +25,13 @@ gulp.task('browserify', function() {
     .pipe(livereload());
 });
 
+gulp.task('compress', function() {
+  return gulp.src('app/dist/js/*.js')
+    .pipe(plumber())
+    .pipe(uglify())
+    .pipe(gulp.dest('./app/dist/js'));
+})
+
 // launch browser
 gulp.task('open', function() {
   var opts = {
